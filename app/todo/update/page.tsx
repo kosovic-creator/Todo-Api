@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useGlobalContext } from '@/app/context/GlobalContext';
 import { Button } from "@/components/ui/button";
+import { useRouter } from 'next/navigation'; //
 
 export default function UpdatePage() {
     const [title, setTitle] = useState('');
@@ -13,6 +14,8 @@ export default function UpdatePage() {
     const [message, setMessage] = useState('');
     const { user, setUser } = useGlobalContext();
     const [toast, setToast] = useState<string | null>(null);
+    const router = useRouter();
+
 
     useEffect(() => {
         const fetchTodo = async () => {
@@ -60,6 +63,7 @@ export default function UpdatePage() {
                 setMessage('Todo successfully updated!');
                 console.log('Updated Todo:', updatedTodo);
                 showToast('Izmena je uspešno dodata!');
+                router.push('/todo');
             } else {
                 const errorData = await response.json();
                 setMessage(`Error: ${errorData.error || 'Failed to update todo.'}`);

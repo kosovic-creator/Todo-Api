@@ -2,6 +2,15 @@
 import { useEffect, useState } from "react";
 import { useGlobalContext } from '@/app/context/GlobalContext';
 import Link from "next/link";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+
 
 const GetTodoByIdForm = () => {
   const [todoId, setTodoId] = useState("");
@@ -63,24 +72,23 @@ const GetTodoByIdForm = () => {
 
       <div>
       <form onSubmit={handleSubmit} className="get-todo-form flex flex-col items-center">
-        <h1 className="text-2xl font-bold mb-4">Get Todo by ID</h1>
+
         {todo && (
-          <div className="todo-details">
-            <h2>Todo Details</h2>
-            <p><strong>Title:</strong> {todo.title}</p>
-            <p><strong>Priority:</strong> {todo.priority}</p>
-            <p><strong>Done:</strong> {todo.done ? "Yes" : "No"}</p>
-            <p><strong>Details:</strong> {todo.details || "N/A"}</p>
-            <Link href="/todo" className='ml-5 text-blue-700 hover:text-blue-400 underline'>Povratak</Link>
+          <div className="todo-details p-4 rounded w-full max-w-md align-baseline bg-white shadow-md text-left">
+            <h2 className="text-lg font-semibold mb-4">Todo Details</h2>
+            <p ><>Title:</> {todo.title}</p>
+            <p><>Priority:</> {todo.priority}</p>
+            <p><>Done:</> {todo.done ? "Yes" : "No"}</p>
+            <p><>Details:</> {todo.details || "N/A"}</p>
+            <Link  href="/todo" className='ml-5 text-blue-700 hover:text-blue-400 underline text-left'>Povratak</Link>
           </div>
         )}
       </form>
-      <div>
 
-      </div>
+
     </div>
   </div>
-  );
+);
 };
 
 export default GetTodoByIdForm;

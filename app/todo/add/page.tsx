@@ -1,6 +1,11 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation'; // za app/
+
 import { useState } from 'react';
 
 export default function AddTodoForm() {
@@ -9,6 +14,7 @@ export default function AddTodoForm() {
   const [details, setDetails] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,6 +41,7 @@ export default function AddTodoForm() {
         setTitle('');
         setPriority('');
         setDetails('');
+        router.push('/todo');
       } else {
         const errorData = await response.json();
         setError(errorData.message || 'Failed to add todo.');
@@ -50,7 +57,7 @@ export default function AddTodoForm() {
 
       <div>
         <label htmlFor="title" className="block font-medium">Title</label>
-        <input
+        <Input
           id="title"
           type="text"
           value={title}
@@ -62,7 +69,7 @@ export default function AddTodoForm() {
 
       <div>
         <label htmlFor="priority" className="block font-medium">Priority</label>
-        <input
+        <Input
           id="priority"
           type="number"
           value={priority}
@@ -74,7 +81,7 @@ export default function AddTodoForm() {
 
       <div>
         <label htmlFor="details" className="block font-medium">Details</label>
-        <textarea
+        <Textarea
           id="details"
           value={details}
           onChange={(e) => setDetails(e.target.value)}
@@ -82,12 +89,12 @@ export default function AddTodoForm() {
         />
       </div>
 
-      <button
+      <Button
         type="submit"
         className="bg-black text-white py-2 px-4 rounded hover:bg-blue-600"
       >
         Add Todo
-      </button>
+      </Button>
       <Link href="/todo" className='ml-5 text-blue-700 hover:text-blue-400 underline'>Povratak</Link>
       {error && <p className="text-red-500">{error}</p>}
       {success && <p className="text-green-500">{success}</p>}
