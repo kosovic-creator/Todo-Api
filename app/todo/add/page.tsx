@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useState } from 'react';
 
 export default function AddTodoForm() {
@@ -45,8 +46,7 @@ export default function AddTodoForm() {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-      {error && <p className="text-red-500">{error}</p>}
-      {success && <p className="text-green-500">{success}</p>}
+
 
       <div>
         <label htmlFor="title" className="block font-medium">Title</label>
@@ -88,6 +88,9 @@ export default function AddTodoForm() {
       >
         Add Todo
       </button>
+      <Link href="/todo" className='ml-5 text-blue-700 hover:text-blue-400 underline'>Povratak</Link>
+      {error && <p className="text-red-500">{error}</p>}
+      {success && <p className="text-green-500">{success}</p>}
     </form>
   );
 }
