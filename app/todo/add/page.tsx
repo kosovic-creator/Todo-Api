@@ -41,7 +41,7 @@ export default function AddTodoForm() {
         setTitle('');
         setPriority('');
         setDetails('');
-        router.push('/todo');
+        setTimeout(() => router.push('/todo'), 2500);
       } else {
         const errorData = await response.json();
         setError(errorData.message || 'Failed to add todo.');
@@ -91,11 +91,11 @@ export default function AddTodoForm() {
 
       <Button
         type="submit"
-        className="bg-black text-white py-2 px-4 rounded hover:bg-blue-600"
+        className="bg-black text-white py-2 px-4 rounded hover:bg-black-600 transition duration-200"
       >
         Add Todo
       </Button>
-      <Link href="/todo" className='ml-5 text-blue-700 hover:text-blue-400 underline'>Povratak</Link>
+      {/* <Link href="/todo" className='ml-5 text-blue-700 hover:text-blue-400 underline'>Povratak</Link> */}
       {error && <p className="text-red-500">{error}</p>}
       {success && <p className="text-green-500">{success}</p>}
     </form>

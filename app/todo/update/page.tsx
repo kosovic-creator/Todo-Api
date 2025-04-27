@@ -63,7 +63,7 @@ export default function UpdatePage() {
                 setMessage('Todo successfully updated!');
                 console.log('Updated Todo:', updatedTodo);
                 showToast('Izmena je uspešno dodata!');
-                router.push('/todo');
+                setTimeout(() => router.push('/todo'), 2500);
             } else {
                 const errorData = await response.json();
                 setMessage(`Error: ${errorData.error || 'Failed to update todo.'}`);
@@ -141,9 +141,9 @@ export default function UpdatePage() {
                 <Button type="submit" className="w-full bg-black text-white py-2 rounded-md hover:bg-black-700">
                     Izmjeni
                 </Button>
-                <Link href="/todo" className="mt-4 text- hover:underline">
-                    Back to Todo List
-                </Link>
+                {/* <Link href="/todo" className="mt-4 text- hover:underline"> */}
+                    {/* Back to Todo List
+                </Link> */}
             </form>
         </div>
     );
