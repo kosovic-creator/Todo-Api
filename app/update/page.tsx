@@ -2,7 +2,7 @@
 'use client';
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useGlobalContext } from '../context/GlobalContext';
+import { useGlobalContext } from '@/app/context/GlobalContext';
 import { Button } from "@/components/ui/button";
 
 export default function UpdatePage() {

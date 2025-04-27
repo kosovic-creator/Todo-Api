@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from "react";
-import { useGlobalContext } from '../context/GlobalContext';
+import { useGlobalContext } from '@/app/context/GlobalContext';
 import Link from "next/link";
 
 const GetTodoByIdForm = () => {

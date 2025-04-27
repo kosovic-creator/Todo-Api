@@ -1,9 +1,7 @@
 'use client';
 import { useGlobalContext } from '@/app/context/GlobalContext';
-import UpdateTodo from '@/components/TodoModals/UpdateTodo';
 import { useEffect, useState } from 'react';
 import ConfirmDeleteModal from '@/components/TodoModals/ConfirmDeleteModal';
-// import AddTodo from '@/components/TodoModals/AddTodo';
 import Link from 'next/link';
 
 type Todo = {
@@ -15,19 +13,11 @@ type Todo = {
 };
 
 export default function TodoTable() {
-
   const [todos, setTodos] = useState<Todo[]>([]);
-  const [showModal, setShowModal] = useState(false);
-  const [showAddModal, setShowAddModal] = useState(false);
-  const [editTodo, setEditTodo] = useState<Todo | null>(null);
   const [toast, setToast] = useState<string | null>(null);
-  const [newDetails, setNewDetails] = useState('');
-  const [editDetails, setEditDetails] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState<string | number | null>(null);
-
   const { user, setUser } = useGlobalContext();
-
 
   useEffect(() => {
     fetch('/api/todo')
@@ -35,24 +25,13 @@ export default function TodoTable() {
       .then(setTodos);
   }, []);
 
-  const openEditModal = (todo: Todo) => {
-    setEditTodo(todo);
-    setShowModal(true);
-  };
-
-  const openModal = (id: string | number) => {
+  const openDeleteConfirmModal = (id: string | number) => {
     setSelectedItemId(id);
     setIsModalOpen(true);
   };
-  const closeModal = () => {
+  const closeDeleteConfirmModal = () => {
     setIsModalOpen(false);
     setSelectedItemId(null);
-  };
-
-
-  const closeEditModal = () => {
-    setShowModal(false);
-    setEditTodo(null);
   };
 
   function showToast(message: string) {
@@ -91,13 +70,18 @@ const brojZapisa=todos.length;
   const brojKompletiranih=todos.filter(todo => todo.done).length;
   const procenatKompletiranih = brojZapisa === 0 ? 0 : Math.round((brojKompletiranih / brojZapisa) * 100);
 
+  const setMessage = (message: string) => {
+    setToast(message);
+    setTimeout(() => setToast(null), 2500); // Toast nestaje posle 2.5s
+  };
+
+
   return (
     <>
 <a>Procenat kompletiranih zadataka:  {procenatKompletiranih}%</a>
       <div className='container mx-auto p-4'>
         <h1 className="text-2xl font-bold mb-4">Lista Napomena</h1>
-
-        <Link className=' text-blue-600' href="/add">Dodaj novi Podsjetnik</Link>
+        <Link className=' text-blue-600' href="/todo/add">Dodaj novi Podsjetnik</Link>
         <table className="todo-table table-auto w-full border-collapse border border-gray-300 ">
           <thead className='bg-gray-800  text-gray-700 text-sm uppercase font-bold '>
             <tr className='border-b border-gray-300  text-gray-50 '>
@@ -129,13 +113,9 @@ const brojZapisa=todos.length;
                     />
                   </td>
                   <td>
-                    <button className='mr-2 text-red-700' onClick={() => openModal(todo.id)}>Obriši</button>
-                    {/* <button className='ml-5 text-lime-600 border-solid' onClick={() => openEditModal(todo)}>Izmeni</button> */}
-                    <Link href="/form" onClick={() => setUser( (todo.id))} className='ml-5 text-blue-600'>Detalji</Link>
-                    <Link href="/update" onClick={() => setUser( (todo.id))} className='ml-5 text-blue-600'>Update</Link>
-
-
-                    {/* <Link href={`/form/${todo.id}`} className='ml-5 text-blue-600'>Deta</Link> */}
+                    <button className='mr-2 text-red-700 underline hover:text-red-500' onClick={() => openDeleteConfirmModal(todo.id)}>Obriši</button>
+                    <Link href="/todo/form" onClick={() => setUser( (todo.id))} className='ml-5 text-blue-600 underline hover:text-blue-500'>Detalji</Link>
+                    <Link href="/todo/update" onClick={() => setUser( (todo.id))} className='ml-5 text-green-600 underline hover:text-green-500'>Izmjeni</Link>
                   </td>
                 </tr>
               ))
@@ -147,7 +127,7 @@ const brojZapisa=todos.length;
 
     <ConfirmDeleteModal
         isOpen={isModalOpen}
-        onClose={closeModal}
+        onClose={closeDeleteConfirmModal}
         onConfirm={() => deleteTodo(String(selectedItemId!))}
         itemId={selectedItemId!}
         title={todos.find(todo => todo.id === String(selectedItemId!))?.title || ''}
