@@ -34,14 +34,14 @@ function reducer(state: State, action: Action): State {
         count: state.count - 1,
         odobrenje: state.count - 1 > 5 ? 'odobren' : 'nije odobren'
       };
-    case 'reset':
-      return { count: 0, odobrenje: 'nije odobren' };
       case "setCount":
         return {
           ...state,
           count: action.payload!,
           odobrenje: action.payload > 5 ? 'odobren' : 'nije odobren'
         };
+        case 'reset':
+      return { count: 0, odobrenje: 'nije odobren' };
     default:
       throw new Error('Unknown action type');
   }
