@@ -50,16 +50,7 @@ export default function TodoTable() {
     showToast('Napomena je uspešno obrisana!');
   };
 
-  const addTodo = async (title: string, priority: number, details: string) => {
-    const res = await fetch('/api/todo', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title, priority, details }),
-    });
-    const newTodo = await res.json();
-    setTodos([newTodo, ...todos]);
-    showToast('Napomena je uspješno dodata!');
-  };
+ 
   const brojZapisa = todos.length;
   const brojKompletiranih = todos.filter(todo => todo.done).length;
   const procenatKompletiranih = brojZapisa === 0 ? 0 : Math.round((brojKompletiranih / brojZapisa) * 100);
