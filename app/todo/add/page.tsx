@@ -4,9 +4,16 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation'; // za app/
-
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { z } from 'zod';
+
+// Define Zod schema for validation
+const TodoSchema = z.object({
+  title: z.string().min(3, 'Naslov mora imati najmanje 3 karaktera.'),
+  priority: z.number().positive('Prioritet mora biti pozitivan broj.'),
+  details: z.string().optional(),
+});
 
 export default function AddTodoForm() {
   const [title, setTitle] = useState('');
@@ -21,8 +28,13 @@ export default function AddTodoForm() {
     setError('');
     setSuccess('');
 
-    if (!title || typeof priority !== 'number') {
-      setError('Title and priority are required, and priority must be a number.');
+    // Validate form data using Zod
+    const result = TodoSchema.safeParse({ title, priority, details });
+
+    if (!result.success) {
+      // Map errors to display them
+      const errorMessages = result.error.errors.map((err) => err.message).join(', ');
+      setError(errorMessages);
       return;
     }
 
@@ -32,11 +44,10 @@ export default function AddTodoForm() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ title, priority, details }),
+        body: JSON.stringify(result.data), // Use validated data
       });
 
       if (response.ok) {
-
         setSuccess('Napomena uspješno dodata!');
         setTitle('');
         setPriority('');
@@ -45,10 +56,9 @@ export default function AddTodoForm() {
       } else {
         const errorData = await response.json();
         setError(errorData.message || 'Greška u dodavanju napomene.');
-        <Link href="/todo" className="text-blue-700 hover:text-blue-400 underline">Nazad</Link>
       }
     } catch (err) {
-      setError('Greška.');
+      setError('Greška prilikom slanja podataka.');
     }
   };
 
@@ -96,7 +106,6 @@ export default function AddTodoForm() {
       >
         Dodaj Napomenu
       </Button>
-      {/* <Link href="/todo" className='ml-5 text-blue-700 hover:text-blue-400 underline'>Povratak</Link> */}
       {error && <p className="text-red-500">{error}</p>}
       {success && <p className="text-green-500">{success}</p>}
     </form>

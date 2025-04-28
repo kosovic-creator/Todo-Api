@@ -1,16 +1,18 @@
 'use client';
 import { useGlobalContext } from '@/app/context/GlobalContext';
 import { useEffect, useState } from 'react';
+
 import ConfirmDeleteModal from '@/components/TodoModals/ConfirmDeleteModal';
 import Link from 'next/link';
+import { Todo } from '@prisma/client';
 
-type Todo = {
-  id: string;
-  title: string;
-  priority: number;
-  done: boolean;
-  details?: string; // Added optional 'details' property
-};
+// type Todo = {
+//   id: string;
+//   title: string;
+//   priority: number;
+//   done: boolean;
+//   details?: string; // Added optional 'details' property
+// };
 
 export default function TodoTable() {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -81,7 +83,7 @@ const brojZapisa=todos.length;
 <a>Procenat kompletiranih zadataka:  {procenatKompletiranih}%</a>
       <div className='container mx-auto p-4'>
         <h1 className="text-2xl font-bold mb-4">Lista Napomena</h1>
-        <Link className=' text-blue-600' href="/todo/add">Dodaj novi Podsjetnik</Link>
+        <Link className=' text-black' href="/todo/add">Dodaj novi Podsjetnik</Link>
         <table className="todo-table table-auto w-full border-collapse border border-gray-300 ">
           <thead className='bg-gray-800  text-gray-700 text-sm uppercase font-bold '>
             <tr className='border-b border-gray-300  text-gray-50 '>

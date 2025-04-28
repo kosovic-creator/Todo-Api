@@ -10,13 +10,13 @@ const UserSchema = z.object({
   export default UserSchema;
 
 
-export interface Todo {
-  id:    number
-  title: String
-  details: String
-  priority: number
-  done:  Boolean
-}
+type Todo = {
+  id: string;
+  title: string;
+  priority: number;
+  done: boolean;
+  details?: string; // Added optional 'details' property
+};
 
 
 
