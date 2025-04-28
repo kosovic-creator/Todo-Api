@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useGlobalContext } from '@/app/context/GlobalContext';
 import { Button } from "@/components/ui/button";
-import { useRouter } from 'next/navigation'; //
+import { useRouter } from 'next/navigation';
+import { z } from 'zod';
 
 export default function UpdatePage() {
     const [title, setTitle] = useState('');
@@ -15,7 +16,14 @@ export default function UpdatePage() {
     const { user, setUser } = useGlobalContext();
     const [toast, setToast] = useState<string | null>(null);
     const router = useRouter();
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
 
+    const TodoSchema = z.object({
+        title: z.string().min(3, 'Naslov mora imati najmanje 3 karaktera.'),
+        priority: z.number().positive('Prioritet mora biti pozitivan broj.'),
+        details: z.string().optional(),
+    });
 
     useEffect(() => {
         const fetchTodo = async () => {
@@ -48,6 +56,18 @@ export default function UpdatePage() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setError('');
+        setSuccess('');
+
+        // Validate form data using Zod
+        const result = TodoSchema.safeParse({ title, priority, details });
+
+        if (!result.success) {
+            // Map errors to display them
+            const errorMessages = result.error.errors.map((err) => err.message).join(', ');
+            setError(errorMessages);
+            return;
+        }
 
         try {
             const response = await fetch(`/api/todo/${user}`, {
@@ -55,7 +75,7 @@ export default function UpdatePage() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ title, priority,details, done }),
+                body: JSON.stringify({ title, priority, details, done }),
             });
 
             if (response.ok) {
@@ -65,7 +85,7 @@ export default function UpdatePage() {
                 setTimeout(() => router.push('/todo'), 2000);
             } else {
                 const errorData = await response.json();
-                setMessage(`Error: ${errorData.error || 'Greška pri zimjeni.'}`);
+                setMessage(`Error: ${errorData.error || 'Greška pri izmjeni.'}`);
                 setTimeout(() => router.push('/todo'), 3500);
             }
         } catch (error) {
@@ -75,7 +95,6 @@ export default function UpdatePage() {
     };
 
     return (
-
         <div className="flex flex-col items-center justify-center min-h-screen py-2">
             <h1 className="text-2xl font-bold mb-4">Update Todo</h1>
             <form onSubmit={handleSubmit} className="w-full max-w-sm">
@@ -138,7 +157,8 @@ export default function UpdatePage() {
                 <Button type="submit" className="w-full bg-black text-white py-2 rounded-md hover:bg-black-700">
                     Izmjeni
                 </Button>
-
+                {error && <p className="text-red-500 mt-2">{error}</p>}
+                {success && <p className="text-green-500 mt-2">{success}</p>}
             </form>
         </div>
     );

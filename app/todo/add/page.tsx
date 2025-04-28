@@ -73,7 +73,7 @@ export default function AddTodoForm() {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           className="border rounded p-2 w-full"
-          required
+
         />
       </div>
 
@@ -85,7 +85,7 @@ export default function AddTodoForm() {
           value={priority}
           onChange={(e) => setPriority(Number(e.target.value))}
           className="border rounded p-2 w-full"
-          required
+         
         />
       </div>
 
