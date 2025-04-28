@@ -1,11 +1,11 @@
 // filepath: /todo-app/todo-app/app/update/page.tsx
 'use client';
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { useGlobalContext } from '@/app/context/GlobalContext';
 import { Button } from "@/components/ui/button";
 import { useRouter } from 'next/navigation';
 import TodoSchema  from '@/types/index';
+import { Input } from "@/components/ui/input";
 
 export default function UpdatePage() {
     const [title, setTitle] = useState('');
@@ -94,7 +94,7 @@ export default function UpdatePage() {
             <form onSubmit={handleSubmit} className="w-full max-w-sm">
                 <div className="mb-4">
                     <label htmlFor="title" className="block text-sm font-medium text-gray-700">Title:</label>
-                    <input
+                    <Input
                         type="text"
                         id="title"
                         value={title}
@@ -106,7 +106,7 @@ export default function UpdatePage() {
 
                 <div className="mb-4">
                     <label htmlFor="details" className="block text-sm font-medium text-gray-700">Details:</label>
-                    <input
+                    <Input
                         type="text"
                         id="details"
                         value={details}
@@ -118,7 +118,7 @@ export default function UpdatePage() {
 
                 <div className="mb-4">
                     <label htmlFor="priority" className="block text-sm font-medium text-gray-700">Priority:</label>
-                    <input
+                    <Input
                         type="number"
                         id="priority"
                         value={priority}
@@ -131,7 +131,7 @@ export default function UpdatePage() {
 
                 <div className="mb-4">
                     <label htmlFor="done" className="block text-sm font-medium text-gray-700">Done:</label>
-                    <input
+                    <Input
                         type="checkbox"
                         id="done"
                         checked={done}

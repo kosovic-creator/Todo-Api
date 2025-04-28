@@ -2,7 +2,7 @@
 
 import { toast } from "@/components/hooks/use-toast";
 
-export default function ToastHandler({ message }: { message: string }) {
+export default function ToastHandlerDelete({ message }: { message: string }) {
   if (message) {
     toast({
       title: "Uspješno obrisan artikal",

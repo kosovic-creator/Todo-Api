@@ -1,9 +1,9 @@
 
 import { z } from "zod";
 const TodoSchema = z.object({
-    title: z.string().min(3, "Ime mora imati najmanje 3 karaktera"),
+    title: z.string().min(3, "Title mora imati najmanje 3 karaktera"),
     priority: z.number().positive("Godine moraju biti pozitivan broj"),
-    details: z.string().min(3, "Ime mora imati najmanje 3 karaktera"),
+    details: z.string().min(3, "Detail mora imati najmanje 3 karaktera"),
     // email: z.string().email("Neispravan format email adrese"),
     });
     type todo = z.infer<typeof TodoSchema>;

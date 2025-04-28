@@ -6,14 +6,6 @@ import ConfirmDeleteModal from '@/components/TodoModals/ConfirmDeleteModal';
 import Link from 'next/link';
 import { Todo } from '@prisma/client';
 
-// type Todo = {
-//   id: string;
-//   title: string;
-//   priority: number;
-//   done: boolean;
-//   details?: string; // Added optional 'details' property
-// };
-
 export default function TodoTable() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [toast, setToast] = useState<string | null>(null);
@@ -40,7 +32,6 @@ export default function TodoTable() {
     setToast(message);
     setTimeout(() => setToast(null), 2500); // Toast nestaje posle 2.5s
   }
-const brojZapisa=todos.length;
 
   const updateTodo = async (id: string, data: Partial<Todo>) => {
     const res = await fetch(`/api/todo/${id}`, {
@@ -69,18 +60,12 @@ const brojZapisa=todos.length;
     setTodos([newTodo, ...todos]);
     showToast('Napomena je uspješno dodata!');
   };
-  const brojKompletiranih=todos.filter(todo => todo.done).length;
+  const brojZapisa = todos.length;
+  const brojKompletiranih = todos.filter(todo => todo.done).length;
   const procenatKompletiranih = brojZapisa === 0 ? 0 : Math.round((brojKompletiranih / brojZapisa) * 100);
-
-  const setMessage = (message: string) => {
-    setToast(message);
-    setTimeout(() => setToast(null), 2500); // Toast nestaje posle 2.5s
-  };
-
-
   return (
     <>
-<a>Procenat kompletiranih zadataka:  {procenatKompletiranih}%</a>
+      <a>Procenat kompletiranih zadataka:  {procenatKompletiranih}%</a>
       <div className='container mx-auto p-4'>
         <h1 className="text-2xl font-bold mb-4">Lista Napomena</h1>
         <Link className=' text-black' href="/todo/add">Dodaj novi Podsjetnik</Link>
@@ -116,32 +101,29 @@ const brojZapisa=todos.length;
                   </td>
                   <td>
                     <button className='mr-2 text-red-700 underline hover:text-red-500' onClick={() => openDeleteConfirmModal(todo.id)}>Obriši</button>
-                    <Link href="/todo/form" onClick={() => setUser( (todo.id))} className='ml-5 text-blue-600 underline hover:text-blue-500'>Detalji</Link>
-                    <Link href="/todo/update" onClick={() => setUser( (todo.id))} className='ml-5 text-green-600 underline hover:text-green-500'>Izmjeni</Link>
+                    <Link href="/todo/form" onClick={() => setUser((todo.id))} className='ml-5 text-blue-600 underline hover:text-blue-500'>Detalji</Link>
+                    <Link href="/todo/update" onClick={() => setUser((todo.id))} className='ml-5 text-green-600 underline hover:text-green-500'>Izmjeni</Link>
                   </td>
                 </tr>
               ))
             )}
           </tbody>
         </table>
-
-
-
-    <ConfirmDeleteModal
-        isOpen={isModalOpen}
-        onClose={closeDeleteConfirmModal}
-        onConfirm={() => deleteTodo(String(selectedItemId!))}
-        itemId={selectedItemId!}
-        title={todos.find(todo => todo.id === String(selectedItemId!))?.title || ''}
-      />
-    {toast && (
+        <ConfirmDeleteModal
+          isOpen={isModalOpen}
+          onClose={closeDeleteConfirmModal}
+          onConfirm={() => deleteTodo(String(selectedItemId!))}
+          itemId={selectedItemId!}
+          title={todos.find(todo => todo.id === String(selectedItemId!))?.title || ''}
+        />
+        {toast && (
           <div
             style={{
               position: 'fixed',
-              top: 40,
+              top: 60,
               right: 20,
-              background: 'green',
-              color: '#fff',
+              background: 'white',
+              color: 'black',
               padding: '12px 24px',
               borderRadius: 6,
               boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
@@ -151,7 +133,6 @@ const brojZapisa=todos.length;
             {toast}
           </div>
         )}
-
       </div>
     </>
   );
