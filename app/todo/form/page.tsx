@@ -75,7 +75,7 @@ const GetTodoByIdForm = () => {
 
         {todo && (
           <div className="todo-details p-4 rounded w-full max-w-md align-baseline bg-white shadow-md text-left">
-            <h2 className="text-lg font-semibold mb-4">Todo Details</h2>
+            <h2 className="text-lg font-semibold mb-4">Todo Detalji</h2>
             <p ><>Title:</> {todo.title}</p>
             <p><>Priority:</> {todo.priority}</p>
             <p><>Done:</> {todo.done ? "Yes" : "No"}</p>

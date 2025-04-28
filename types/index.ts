@@ -1,17 +1,16 @@
 
-// import { z } from "zod";
+import { z } from "zod";
+const UserSchema = z.object({
+    title: z.string().min(3, "Ime mora imati najmanje 3 karaktera"),
+    priority: z.number().positive("Godine moraju biti pozitivan broj"),
+    details: z.string().min(3, "Ime mora imati najmanje 3 karaktera"),
+    // email: z.string().email("Neispravan format email adrese"),
+    });
+    type User = z.infer<typeof UserSchema>;
+  export default UserSchema;
 
-//   const dodajArtikalSchema = z.object({
-//     naziv: z.string().min(3, "Artikal mora imati najmanje 3 karaktera"),
-//        cijena: z
-//         .string()
-//         .regex(/^\d+(\.\d{1,2})?$/, 'Cijena mora biti validan broj sa do 2 decimalne tačke'),
-//     });
 
-//     type Product = z.infer<typeof dodajArtikalSchema>;
-//   export default dodajArtikalSchema; ;
-
-export interface Item {
+export interface Todo {
   id:    number
   title: String
   details: String

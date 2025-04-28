@@ -36,24 +36,25 @@ export default function AddTodoForm() {
       });
 
       if (response.ok) {
-        const data = await response.json();
-        setSuccess('Todo added successfully!');
+
+        setSuccess('Napomena uspješno dodata!');
         setTitle('');
         setPriority('');
         setDetails('');
-        setTimeout(() => router.push('/todo'), 2500);
+        setTimeout(() => router.push('/todo'), 2000);
       } else {
         const errorData = await response.json();
-        setError(errorData.message || 'Failed to add todo.');
+        setError(errorData.message || 'Greška u dodavanju napomene.');
+        <Link href="/todo" className="text-blue-700 hover:text-blue-400 underline">Nazad</Link>
       }
     } catch (err) {
-      setError('An unexpected error occurred.');
+      setError('Greška.');
     }
   };
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-
+      <h1 className="text-2xl font-bold">Dodaj Napomenu</h1>
 
       <div>
         <label htmlFor="title" className="block font-medium">Title</label>
@@ -80,7 +81,7 @@ export default function AddTodoForm() {
       </div>
 
       <div>
-        <label htmlFor="details" className="block font-medium">Details</label>
+        <label htmlFor="details" className="block font-medium">Detalji</label>
         <Textarea
           id="details"
           value={details}
@@ -93,7 +94,7 @@ export default function AddTodoForm() {
         type="submit"
         className="bg-black text-white py-2 px-4 rounded hover:bg-black-600 transition duration-200"
       >
-        Add Todo
+        Dodaj Napomenu
       </Button>
       {/* <Link href="/todo" className='ml-5 text-blue-700 hover:text-blue-400 underline'>Povratak</Link> */}
       {error && <p className="text-red-500">{error}</p>}

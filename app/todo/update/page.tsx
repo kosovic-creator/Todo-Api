@@ -26,7 +26,7 @@ export default function UpdatePage() {
 
                 if (!response.ok) {
                     const errorData = await response.json();
-                    setMessage(errorData.message || "Failed to fetch todo.");
+                    setMessage(errorData.message || "Greška u učitavanji podataka.");
                     return;
                 }
 
@@ -36,7 +36,7 @@ export default function UpdatePage() {
                 setPriority(data.priority);
                 setDone(data.done);
             } catch (err) {
-                setMessage("An unexpected error occurred.");
+                setMessage("Greška.");
                 console.error(err);
             }
         };
@@ -60,23 +60,20 @@ export default function UpdatePage() {
 
             if (response.ok) {
                 const updatedTodo = await response.json();
-                setMessage('Todo successfully updated!');
+                setMessage('Izmena je uspešno dodata!');
                 console.log('Updated Todo:', updatedTodo);
-                showToast('Izmena je uspešno dodata!');
-                setTimeout(() => router.push('/todo'), 2500);
+                setTimeout(() => router.push('/todo'), 2000);
             } else {
                 const errorData = await response.json();
-                setMessage(`Error: ${errorData.error || 'Failed to update todo.'}`);
+                setMessage(`Error: ${errorData.error || 'Greška pri zimjeni.'}`);
+                setTimeout(() => router.push('/todo'), 3500);
             }
         } catch (error) {
             setMessage('An unexpected error occurred.');
             console.error(error);
         }
     };
-    function showToast(message: string) {
-        setToast(message);
-        setTimeout(() => setToast(null), 2500); // Toast nestaje posle 2.5s
-      }
+
     return (
 
         <div className="flex flex-col items-center justify-center min-h-screen py-2">
@@ -132,7 +129,7 @@ export default function UpdatePage() {
 
                 {message && (
                     <p className={`
-                        ${message.includes('successfully') ? 'text-green-500' : 'text-red-500'}
+                        ${message.includes('Izmena je uspešno dodata') ? 'text-green-500' : 'text-red-500'}
                         mb-4 text-sm font-medium
                     `}>
                         {message}
@@ -141,9 +138,7 @@ export default function UpdatePage() {
                 <Button type="submit" className="w-full bg-black text-white py-2 rounded-md hover:bg-black-700">
                     Izmjeni
                 </Button>
-                {/* <Link href="/todo" className="mt-4 text- hover:underline"> */}
-                    {/* Back to Todo List
-                </Link> */}
+
             </form>
         </div>
     );
