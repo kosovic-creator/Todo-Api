@@ -1,13 +1,13 @@
 
 import { z } from "zod";
-const UserSchema = z.object({
+const TodoSchema = z.object({
     title: z.string().min(3, "Ime mora imati najmanje 3 karaktera"),
     priority: z.number().positive("Godine moraju biti pozitivan broj"),
     details: z.string().min(3, "Ime mora imati najmanje 3 karaktera"),
     // email: z.string().email("Neispravan format email adrese"),
     });
-    type User = z.infer<typeof UserSchema>;
-  export default UserSchema;
+    type todo = z.infer<typeof TodoSchema>;
+  export default TodoSchema;
 
 
 type Todo = {

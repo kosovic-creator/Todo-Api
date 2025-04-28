@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useGlobalContext } from '@/app/context/GlobalContext';
 import { Button } from "@/components/ui/button";
 import { useRouter } from 'next/navigation';
-import { z } from 'zod';
+import TodoSchema  from '@/types/index';
 
 export default function UpdatePage() {
     const [title, setTitle] = useState('');
@@ -18,12 +18,6 @@ export default function UpdatePage() {
     const router = useRouter();
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
-
-    const TodoSchema = z.object({
-        title: z.string().min(3, 'Naslov mora imati najmanje 3 karaktera.'),
-        priority: z.number().positive('Prioritet mora biti pozitivan broj.'),
-        details: z.string().optional(),
-    });
 
     useEffect(() => {
         const fetchTodo = async () => {

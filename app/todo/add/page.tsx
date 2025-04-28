@@ -5,14 +5,8 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { z } from 'zod';
+import TodoSchema  from '@/types/index'; // Import your Zod schema from the appropriate file
 
-// Define Zod schema for validation
-const TodoSchema = z.object({
-  title: z.string().min(3, 'Naslov mora imati najmanje 3 karaktera.'),
-  priority: z.number().positive('Prioritet mora biti pozitivan broj.'),
-  details: z.string().optional(),
-});
 
 export default function AddTodoForm() {
   const [title, setTitle] = useState('');
@@ -21,6 +15,7 @@ export default function AddTodoForm() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const router = useRouter();
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -85,7 +80,7 @@ export default function AddTodoForm() {
           value={priority}
           onChange={(e) => setPriority(Number(e.target.value))}
           className="border rounded p-2 w-full"
-         
+
         />
       </div>
 
