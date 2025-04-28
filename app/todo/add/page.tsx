@@ -3,7 +3,6 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { z } from 'zod';
@@ -52,7 +51,7 @@ export default function AddTodoForm() {
         setTitle('');
         setPriority('');
         setDetails('');
-        setTimeout(() => router.push('/todo'), 2000);
+        setTimeout(() => router.push('/todo'), 1500);
       } else {
         const errorData = await response.json();
         setError(errorData.message || 'Greška u dodavanju napomene.');
