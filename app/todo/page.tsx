@@ -82,10 +82,10 @@ export default function TodoTable() {
         <Link className='ml-7 rounded-md bg-black text-white size-50 p-2' href="/todo/add">Dodaj Podsjetnik</Link>
       </div>
 
-      <div className='container mx-auto p-4'>
+      <div className='container mx-auto p-0'>
 
         <table className="todo-table table-auto w-full border-collapse border ">
-          <thead className='bg-black  text-white text-sm uppercase '>
+          <thead className='bg-black  text-white  '>
             <tr className='border-b border-gray-300  text-white'>
               <th className='p-3 text-center'>Naslov</th>
               <th className='p-3 text-center'>Detalji</th>
