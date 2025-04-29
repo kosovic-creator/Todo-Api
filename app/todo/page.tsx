@@ -78,16 +78,17 @@ export default function TodoTable() {
           />
         </div>
 
-        <Link href="/todo/add">
-
-          <button className="px-4 py-2 rounded bg-green-500 text-white hover:bg-green-600 transition">Dodaj</button>
-        </Link>
       </div>
 
       <div className='container mx-auto p-0'>
+        <div>
+          <Link href="/todo/add" className='mr-0 p-3'>
+            <button className="px-4 py-2 rounded bg-green-500 text-white hover:bg-green-600 transition p-4">Dodaj</button>
+          </Link>
+        </div>
 
         <table className="todo-table table-auto w-full border-collapse border ">
-          <thead className='bg-black  text-white  '>
+          <thead className='bg-black  text-white font-thin  '>
             <tr className='border-b border-gray-300  text-white'>
               <th className='p-3 text-center'>Naslov</th>
               <th className='p-3 text-center'>Detalji</th>

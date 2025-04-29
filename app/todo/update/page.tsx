@@ -90,7 +90,7 @@ export default function UpdatePage() {
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen py-2">
-            <h1 className="text-2xl font-bold mb-4">Update Todo</h1>
+            <h4 className="text-2xl font-bold-3">Izmjeni</h4>
             <form onSubmit={handleSubmit} className="w-full max-w-sm">
                 <div className="mb-4">
                     <label htmlFor="title" className="block text-sm font-medium text-gray-700">Title:</label>
