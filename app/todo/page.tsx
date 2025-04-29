@@ -62,11 +62,10 @@ export default function TodoTable() {
   const procenatKompletiranih = brojZapisa === 0 ? 0 : Math.round((brojKompletiranih / brojZapisa) * 100);
   return (
     <>
-
-      <div className=' text-gray-500 p-4 flex justify-between items-center w-full'>
-        <div className="relative">
+      <div className='container mx-auto p-0'>
+      <div className=' text-gray-500 p-0 flex justify-between items-center w-full'>
+        <div className="flex items-center relative">
           <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-            {/* Lucide Search ikona */}
             <Search className="h-4 w-4 text-gray-400" />
           </span>
           <Input
@@ -76,17 +75,11 @@ export default function TodoTable() {
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
           />
-        </div>
-
-      </div>
-
-      <div className='container mx-auto p-0'>
-        <div>
           <Link href="/todo/add" className='mr-0 p-3'>
             <button className="px-4 py-2 rounded bg-green-500 text-white hover:bg-green-600 transition p-4">Dodaj</button>
           </Link>
         </div>
-
+      </div>
         <table className="todo-table table-auto w-full border-collapse border ">
           <thead className='bg-black  text-white font-thin  '>
             <tr className='border-b border-gray-300  text-white'>
