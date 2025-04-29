@@ -78,8 +78,10 @@ export default function TodoTable() {
           />
         </div>
 
+        <Link href="/todo/add">
 
-        <Link className='ml-7 rounded-lg bg-black text-white size-50 p-2' href="/todo/add">Dodaj Podsjetnik</Link>
+          <button className="px-4 py-2 rounded bg-green-500 text-white hover:bg-green-600 transition">Dodaj</button>
+        </Link>
       </div>
 
       <div className='container mx-auto p-0'>
@@ -114,9 +116,30 @@ export default function TodoTable() {
                     />
                   </td>
                   <td>
+                    <div className="flex gap-2">
+
+                      <Link href="/todo/form" onClick={() => setUser((todo.id))} >
+                        <button className="px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600 transition">Pregled</button>
+                      </Link>
+
+
+                      <Link href="/todo/update" onClick={() => setUser((todo.id))} >
+
+
+                        <button className="px-4 py-2 rounded bg-yellow-500 text-white hover:bg-yellow-600 transition">Izmjeni</button>
+
+                      </Link>
+
+                      {/* Delete dugme */}
+                      <button className="px-4 py-2 rounded bg-red-500 text-white hover:bg-red-600 transition " onClick={() => openDeleteConfirmModal(todo.id)}>Briši</button>
+
+                      {/* Add dugme */}
+
+                    </div>
+                    {/*
                     <button className='mr-2 text-red-700 underline hover:text-red-500' onClick={() => openDeleteConfirmModal(todo.id)}>Obriši</button>
                     <Link href="/todo/form" onClick={() => setUser((todo.id))} className='ml-5 text-blue-600 underline hover:text-blue-500'>Detalji</Link>
-                    <Link href="/todo/update" onClick={() => setUser((todo.id))} className='ml-5 text-green-600 underline hover:text-green-500'>Izmjeni</Link>
+                    <Link href="/todo/update" onClick={() => setUser((todo.id))} className='ml-5 text-green-600 underline hover:text-green-500'>Izmjeni</Link> */}
                   </td>
                 </tr>
               ))
