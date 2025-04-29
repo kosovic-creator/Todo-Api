@@ -15,9 +15,7 @@ const Nav = () => {
 
 
           <Link href="/todo">PODJETNIK</Link>
-          <Link href="/reducer/counter_reducer">CounterReducer</Link>
-          <Link href="/reducer/slozeni_reducer">SlozeniReducer</Link>
-          <Link href="/reducer/reducer_with_two_states">UdemiReducer</Link>
+         
         </div>
       </nav>
     </header>

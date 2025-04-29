@@ -59,87 +59,90 @@ export default function TodoTable() {
   const brojKompletiranih = todos.filter(todo => todo.done).length;
   const procenatKompletiranih = brojZapisa === 0 ? 0 : Math.round((brojKompletiranih / brojZapisa) * 100);
   return (
-   <>
+    <>
 
-<input
-        type="text"
-        placeholder="Nađi po Naslovu"
-        value={filter}
-        onChange={(e) => setFilter(e.target.value)}
-        className="mb-4 p-2 border border-gray-300 rounded"
-      />
-      <a>Procenat kompletiranih zadataka:  {procenatKompletiranih}%</a>
+      <div className=' text-gray-50 p-4 flex justify-between items-center w-full'>
+        <input
+          type="text"
+          placeholder="Nađi po Naslovu"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+          className="mb-4 ml-0 p-2 border border-gray-300 rounded"
+        />
+
+        <Link className='ml-7 rounded-md bg-black text-white size-50 p-2' href="/todo/add">Dodaj Podsjetnik</Link>
+      </div>
+
       <div className='container mx-auto p-4'>
-        <h1 className="text-2xl font-bold mb-4">Lista Napomena</h1>
-        <Link className=' text-black' href="/todo/add">Dodaj novi Podsjetnik</Link>
 
-      <table className="todo-table table-auto w-full border-collapse border border-gray-300 ">
-        <thead className='bg-gray-800  text-gray-700 text-sm uppercase font-bold '>
-          <tr className='border-b border-gray-300  text-gray-50 '>
-            <th className='p-3 text-center'>Naslov</th>
-            <th className='p-3 text-center'>Detalji</th>
-            <th className="p-3 text-center">Prioritet</th>
-            <th className="p-3 text-left">Završeno</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody className='text-sm text-gray-700 bg-white divide-y divide-gray-300'>
-          {filteredTodos.length === 0 ? (
-            <tr>
-              <td colSpan={4} className="text-center">Nema zadataka</td>
+        <table className="todo-table table-auto w-full border-collapse border ">
+          <thead className='bg-black  text-white text-sm uppercase '>
+            <tr className='border-b border-gray-300  text-white'>
+              <th className='p-3 text-center'>ID</th>
+              <th className='p-3 text-center'>Naslov</th>
+              <th className='p-3 text-center'>Detalji</th>
+              <th className="p-3 text-center">Prioritet</th>
+              <th className="p-3 text-left">Završeno</th>
+              <th></th>
             </tr>
-          ) : (
+          </thead>
+          <tbody className='text-sm text-gray-700 bg-white divide-y divide-gray-300'>
+            {filteredTodos.length === 0 ? (
+              <tr>
+                <td colSpan={4} className="text-center">Nema zadataka</td>
+              </tr>
+            ) : (
               filteredTodos.map(todo => (
                 <tr className='flex-shrink-0' key={todo.id}>
                   <td className='p-2 text-center '>{todo.title}</td>
                   <td className='p-2 text-center '>{todo.details}</td>
-                <td className='text-center'>{todo.priority}</td>
-                <td>
-                  <input
-                    className='ml-5'
-                    type="checkbox"
-                    checked={todo.done}
-                    onChange={() => updateTodo(todo.id, { done: !todo.done })}
-                  />
-                </td>
-                <td>
-                  <button className='mr-2 text-red-700 underline hover:text-red-500' onClick={() => openDeleteConfirmModal(todo.id)}>Obriši</button>
-                  <Link href="/todo/form" onClick={() => setUser((todo.id))} className='ml-5 text-blue-600 underline hover:text-blue-500'>Detalji</Link>
-                  <Link href="/todo/update" onClick={() => setUser((todo.id))} className='ml-5 text-green-600 underline hover:text-green-500'>Izmjeni</Link>
-                </td>
-              </tr>
-            ))
-          )}
-        </tbody>
-      </table>
-      <ConfirmDeleteModal
-        isOpen={isModalOpen}
-        onClose={closeDeleteConfirmModal}
-        onConfirm={() => deleteTodo(String(selectedItemId!))}
-        itemId={selectedItemId!}
-        title={todos.find(todo => todo.id === String(selectedItemId!))?.title || ''}
-      />
-      {toast && (
-        <div
-          style={{
-            position: 'fixed',
-            top: 60,
-            right: 20,
-            background: 'white',
-            color: 'black',
-            padding: '12px 24px',
-            borderRadius: 6,
-            boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-            zIndex: 9999,
-          }}
-        >
-          {toast}
-        </div>
-      )}
-    </div>
+                  <td className='text-center'>{todo.priority}</td>
+                  <td>
+                    <input
+                      className='ml-5'
+                      type="checkbox"
+                      checked={todo.done}
+                      onChange={() => updateTodo(todo.id, { done: !todo.done })}
+                    />
+                  </td>
+                  <td>
+                    <button className='mr-2 text-red-700 underline hover:text-red-500' onClick={() => openDeleteConfirmModal(todo.id)}>Obriši</button>
+                    <Link href="/todo/form" onClick={() => setUser((todo.id))} className='ml-5 text-blue-600 underline hover:text-blue-500'>Detalji</Link>
+                    <Link href="/todo/update" onClick={() => setUser((todo.id))} className='ml-5 text-green-600 underline hover:text-green-500'>Izmjeni</Link>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+        <ConfirmDeleteModal
+          isOpen={isModalOpen}
+          onClose={closeDeleteConfirmModal}
+          onConfirm={() => deleteTodo(String(selectedItemId!))}
+          itemId={selectedItemId!}
+          title={todos.find(todo => todo.id === String(selectedItemId!))?.title || ''}
+        />
+        {toast && (
+          <div
+            style={{
+              position: 'fixed',
+              top: 60,
+              right: 20,
+              background: 'white',
+              color: 'black',
+              padding: '12px 24px',
+              borderRadius: 6,
+              boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+              zIndex: 9999,
+            }}
+          >
+            {toast}
+          </div>
+        )}
+      </div>
+      <footer> <a>Procenat kompletiranih zadataka:  {procenatKompletiranih}%</a></footer>
 
-
-   </>
+    </>
 
 
   );
