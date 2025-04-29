@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 import ConfirmDeleteModal from '@/components/TodoModals/ConfirmDeleteModal';
 import Link from 'next/link';
 import { Todo } from '@prisma/client';
+import { Search } from 'lucide-react';
+import { Input } from '@/components/ui/input';
 
 export default function TodoTable() {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -61,14 +63,21 @@ export default function TodoTable() {
   return (
     <>
 
-      <div className=' text-gray-50 p-4 flex justify-between items-center w-full'>
-        <input
-          type="text"
-          placeholder="Nađi po Naslovu"
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)}
-          className="mb-4 ml-0 p-2 border border-gray-300 rounded"
-        />
+      <div className=' text-gray-500 p-4 flex justify-between items-center w-full'>
+        <div className="relative">
+          <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+            {/* Lucide Search ikona */}
+            <Search className="h-4 w-4 text-gray-400" />
+          </span>
+          <Input
+            type="search"
+            placeholder="Pretraga..."
+            className="pl-10"
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+          />
+        </div>
+
 
         <Link className='ml-7 rounded-md bg-black text-white size-50 p-2' href="/todo/add">Dodaj Podsjetnik</Link>
       </div>
@@ -78,7 +87,6 @@ export default function TodoTable() {
         <table className="todo-table table-auto w-full border-collapse border ">
           <thead className='bg-black  text-white text-sm uppercase '>
             <tr className='border-b border-gray-300  text-white'>
-              <th className='p-3 text-center'>ID</th>
               <th className='p-3 text-center'>Naslov</th>
               <th className='p-3 text-center'>Detalji</th>
               <th className="p-3 text-center">Prioritet</th>
