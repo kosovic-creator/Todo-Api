@@ -57,23 +57,24 @@ export default function AddTodoForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-      <h1 className="text-2xl font-bold">Dodaj Napomenu</h1>
+    <form onSubmit={handleSubmit} className=" w-full max-w-md mx-auto p-4 bg-white shadow-md rounded">
+      <h1 className="text-2xl font-bold-3 p-6 text-center">Dodaj Napomenu</h1>
 
       <div>
-        <label htmlFor="title" className="block font-medium">Title</label>
+        <label htmlFor="title" className="block font-medium">Zadatak</label>
         <Input
           id="title"
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="border rounded p-2 w-full"
+          className="border rounded p-2 w-full form-control form-control-lg"
+          placeholder="Unesite naziv napomene"
 
         />
       </div>
 
       <div>
-        <label htmlFor="priority" className="block font-medium">Priority</label>
+        <label htmlFor="priority" className="block font-medium">Prioritet</label>
         <Input
           id="priority"
           type="number"
@@ -96,8 +97,7 @@ export default function AddTodoForm() {
 
       <Button
         type="submit"
-        className="bg-black text-white py-2 px-4 rounded hover:bg-black-600 transition duration-200"
-      >
+        className="w-full bg-black text-white py-2 rounded-md hover:bg-black-700">
         Dodaj Napomenu
       </Button>
       {error && <p className="text-red-500">{error}</p>}

@@ -68,10 +68,10 @@ const GetTodoByIdForm = () => {
           {todo && (
             <div className="todo-details p-4 rounded w-full max-w-md align-baseline bg-white shadow-md text-left flex-row-reverse" >
               <h2 className="text-lg font-semibold mb-4">Todo </h2>
-              <p ><>Title:</> {todo.title}</p>
-              <p><>Priority:</> {todo.priority}</p>
-              <p><>Done:</> {todo.done ? "Yes" : "No"}</p>
-              <p><>Details:</> {todo.details || "N/A"}</p>
+              <p ><>Zadatak:</> {todo.title}</p>
+              <p><>Prioritet:</> {todo.priority}</p>
+              <p><>Završrno:</> {todo.done ? "Yes" : "No"}</p>
+              <p><>Detalji:</> {todo.details || "N/A"}</p>
               <Link href="/todo">
                 <button  className="flex items-center hover:text-zinc-600 p-2 mt-4 rounded">
                   <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -89,11 +89,11 @@ export default function UpdatePage() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen py-2">
-            <h4 className="text-2xl font-bold-3">Izmjeni</h4>
-            <form onSubmit={handleSubmit} className="w-full max-w-sm">
+        <div className=" w-full max-w-md mx-auto p-4 bg-white shadow-md rounded">
+            <h4  className="text-2xl font-bold-3 p-6 text-center">Izmjeni</h4>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 <div className="mb-4">
-                    <label htmlFor="title" className="block text-sm font-medium text-gray-700">Title:</label>
+                    <label htmlFor="title" className="block text-sm font-medium text-gray-700">Zadatak:</label>
                     <Input
                         type="text"
                         id="title"
@@ -105,7 +105,7 @@ export default function UpdatePage() {
                 </div>
 
                 <div className="mb-4">
-                    <label htmlFor="details" className="block text-sm font-medium text-gray-700">Details:</label>
+                    <label htmlFor="details" className="block text-sm font-medium text-gray-700">Detailji:</label>
                     <Input
                         type="text"
                         id="details"
@@ -117,7 +117,7 @@ export default function UpdatePage() {
                 </div>
 
                 <div className="mb-4">
-                    <label htmlFor="priority" className="block text-sm font-medium text-gray-700">Priority:</label>
+                    <label htmlFor="priority" className="block text-sm font-medium text-gray-700">Prioritet:</label>
                     <Input
                         type="number"
                         id="priority"
@@ -130,7 +130,7 @@ export default function UpdatePage() {
                 </div>
 
                 <div className="mb-4">
-                    <label htmlFor="done" className="block text-sm font-medium text-gray-700">Done:</label>
+                    <label htmlFor="done" className="block text-sm font-medium text-gray-700">Završeno:</label>
                     <Input
                         type="checkbox"
                         id="done"
