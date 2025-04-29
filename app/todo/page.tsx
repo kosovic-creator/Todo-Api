@@ -79,7 +79,7 @@ export default function TodoTable() {
         </div>
 
 
-        <Link className='ml-7 rounded-md bg-black text-white size-50 p-2' href="/todo/add">Dodaj Podsjetnik</Link>
+        <Link className='ml-7 rounded-lg bg-black text-white size-50 p-2' href="/todo/add">Dodaj Podsjetnik</Link>
       </div>
 
       <div className='container mx-auto p-0'>
