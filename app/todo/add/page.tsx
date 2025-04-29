@@ -46,7 +46,7 @@ export default function AddTodoForm() {
         setTitle('');
         setPriority('');
         setDetails('');
-        setTimeout(() => router.push('/todo'), 1500);
+        setTimeout(() => router.push('/todo'), 1000);
       } else {
         const errorData = await response.json();
         setError(errorData.message || 'Greška u dodavanju napomene.');
@@ -81,6 +81,9 @@ export default function AddTodoForm() {
           value={priority}
           onChange={(e) => setPriority(Number(e.target.value))}
           className="border rounded p-2 w-full"
+          placeholder="Unesite prioritet (1-5)"
+          min={1}
+          max={5}
 
         />
       </div>
@@ -92,6 +95,11 @@ export default function AddTodoForm() {
           value={details}
           onChange={(e) => setDetails(e.target.value)}
           className="border rounded p-2 w-full"
+          placeholder="Unesite detalje napomene"
+          rows={4}
+          maxLength={200} // Optional: Limit the number of characters
+          minLength={10} // Optional: Minimum length for the details
+         
         />
       </div>
 

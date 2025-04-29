@@ -101,6 +101,7 @@ export default function UpdatePage() {
                         onChange={(e) => setTitle(e.target.value)}
                         required
                         className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        placeholder="Unesite naziv napomene"
                     />
                 </div>
 
@@ -113,6 +114,8 @@ export default function UpdatePage() {
                         onChange={(e) => seDetails(e.target.value)}
                         required
                         className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        placeholder="Unesite detalje napomene"
+
                     />
                 </div>
 
@@ -124,8 +127,8 @@ export default function UpdatePage() {
                         value={priority}
                         onChange={(e) => setPriority(Number(e.target.value))}
                         min="1"
-                        required
                         className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        placeholder="Unesite prioritet (1-5)"
                     />
                 </div>
 
