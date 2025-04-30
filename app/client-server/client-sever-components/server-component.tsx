@@ -1,4 +1,4 @@
-import ClientComponent from "./client-component";
+import ClientComponent from "../client-sever-components/client-component";
 
 export default async function ServerComponent() {
 
