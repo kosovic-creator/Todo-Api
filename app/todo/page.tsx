@@ -62,7 +62,7 @@ export default function TodoTable() {
   const procenatKompletiranih = brojZapisa === 0 ? 0 : Math.round((brojKompletiranih / brojZapisa) * 100);
   return (
     <>
-      <div className='container mx-auto p-0'>
+      <div className='container mx-auto p-0 w-full'>
       <div className=' text-gray-500 p-0 flex justify-between items-center w-full'>
         <div className="flex items-center relative">
           <span className="absolute inset-y-0 left-0 flex items-center pl-3">
@@ -80,8 +80,8 @@ export default function TodoTable() {
           </Link>
         </div>
       </div>
-        <table className="todo-table table-auto w-full border-collapse border ">
-          <thead className='bg-black  text-white font-thin  '>
+        <table className="table-auto w-full  ">
+          <thead className='bg-black  text-white font-thin '>
             <tr className='border-b border-gray-300  text-white'>
               <th className='p-3 text-center'>Naslov</th>
               <th className='p-3 text-center'>Detalji</th>
@@ -110,7 +110,7 @@ export default function TodoTable() {
                     />
                   </td>
                   <td>
-                    <div className="flex gap-2 flex-row-reverse">
+                    <div className="flex gap-2 flex-row-reverse w-full">
 
                       <Link href="/todo/form" onClick={() => setUser((todo.id))} >
                         <button className="px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600 transition">Pregled</button>
