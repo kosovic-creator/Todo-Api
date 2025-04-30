@@ -10,6 +10,8 @@ const Home = () => {
     <Link href="/reducer/reducer_with_two_states">UdemiReducer</Link>
 
     <Link href="/client-sever-components">ClientServer</Link>
+    <Link href="/client-server-url">ClientServerUrl</Link>
+
 
   </div>;
 };
