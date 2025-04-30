@@ -9,6 +9,8 @@ const Home = () => {
     <Link href="/reducer/slozeni_reducer">SlozeniReducer</Link>
     <Link href="/reducer/reducer_with_two_states">UdemiReducer</Link>
 
+    <Link href="/client-sever-components">ClientServer</Link>
+
   </div>;
 };
 export default Home;
