@@ -1,4 +1,4 @@
-import ClientComponent from "../client-sever-components/client-component";
+import ClientComponent from "./client-component";
 
 export default async function ServerComponent() {
 
@@ -10,7 +10,7 @@ export default async function ServerComponent() {
     return (
         <div>
             <>
-
+            <h1>Iz server Component:     {json.title}</h1>
                 Ovo je server komponenta
 
                 <ClientComponent>

@@ -9,7 +9,7 @@ const Home = () => {
     <Link href="/reducer/slozeni_reducer">SlozeniReducer</Link>
     <Link href="/reducer/reducer_with_two_states">UdemiReducer</Link>
 
-    <Link href="/client-server/client-sever-components">ClientServer</Link>
+    <Link href="/server-client/sever-clent-components">ClientServer</Link>
     <Link href="/client-server/client-server-url">ClientServerUrl</Link>
 
 
