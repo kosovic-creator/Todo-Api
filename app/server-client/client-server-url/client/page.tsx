@@ -6,10 +6,13 @@ interface SearchParams {
   [key: string]: string | string[] | undefined;
 }
 
-export default function Client(searchParams: SearchParams) {
-  // searchParams je objekat sa svim query parametrima
-  // const { kapacitet } = await searchParams
-  const params = useSearchParams();
-  const search = params?.get('kapacitet') ?? ''; // npr. /dashboard?search=my-project
+interface ClientProps {
+  searchParams: Promise<SearchParams>;
+}
+
+export default function Client() {
+  const [search, setSearch] = React.useState('');
+
+
   return <>Search: {search}</>;
 }

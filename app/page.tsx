@@ -11,8 +11,10 @@ const Home = () => {
 
     <Link href="/server-client/sever-client-components">ClientServer</Link>
     <Link href="/client-server/client-server-url">ClientServerUrl</Link>
+    <Link href="/serever-action">CServerAction</Link>
 
-    <Link href="/server-client/server-u-client">ServerClient</Link>
+
+
 
 
   </div>;
