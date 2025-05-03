@@ -44,6 +44,7 @@ export default function TodoTable() {
     });
     const updated = await res.json();
     setTodos(todos.map(t => (t.id === id ? updated : t)));
+    showToast('Napomena je uspešno izmjenjena!');
   };
 
   const deleteTodo = async (id: string) => {
