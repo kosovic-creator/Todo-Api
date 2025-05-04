@@ -1,12 +1,13 @@
 'use client';
 import { useGlobalContext } from '@/app/context/GlobalContext';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useTransition  } from 'react';
 
 import ConfirmDeleteModal from '@/components/TodoModals/ConfirmDeleteModal';
 import Link from 'next/link';
 import { Todo } from '@prisma/client';
 import { Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
+import LoadingDots from '@/components/loading-dots';
 
 export default function TodoTable() {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -15,11 +16,14 @@ export default function TodoTable() {
   const [selectedItemId, setSelectedItemId] = useState<string | number | null>(null);
   const { user, setUser } = useGlobalContext();
   const [filter, setFilter] = useState('');
-
+  const [isPending, startTransition] = useTransition();
   useEffect(() => {
-    fetch('/api/todo')
-      .then(res => res.json())
-      .then(setTodos);
+
+    startTransition(() => {
+      fetch('/api/todo')
+        .then(res => res.json())
+        .then(setTodos);
+    });
   }, []);
 
   const openDeleteConfirmModal = (id: string | number) => {
@@ -63,6 +67,7 @@ export default function TodoTable() {
   const procenatKompletiranih = brojZapisa === 0 ? 0 : Math.round((brojKompletiranih / brojZapisa) * 100);
   return (
     <>
+      {isPending ? <LoadingDots /> : <p>Učitano</p>}
       <div className='container mx-auto p-0 w-full'>
       <div className=' text-gray-500 p-0 flex justify-between items-center w-full'>
         <div className="flex items-center relative">

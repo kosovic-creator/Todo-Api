@@ -1,4 +1,4 @@
-
+'use client'
 
 import ServerComponent from './server-component'
 

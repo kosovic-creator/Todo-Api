@@ -76,7 +76,7 @@ export default function UpdatePage() {
                 const updatedTodo = await response.json();
                 setMessage('Izmena je uspešno dodata!');
                 console.log('Updated Todo:', updatedTodo);
-                setTimeout(() => router.push('/todo'), 2000);
+                setTimeout(() => router.push('/todo'), 2);
             } else {
                 const errorData = await response.json();
                 setMessage(`Error: ${errorData.error || 'Greška pri izmjeni.'}`);

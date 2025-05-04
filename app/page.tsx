@@ -10,7 +10,7 @@ const Home = () => {
     <Link href="/reducer/reducer_with_two_states">UdemiReducer</Link>
 
     <Link href="/server-client/sever-client-components">ClientServer</Link>
-    <Link href="/client-server/client-server-url">ClientServerUrl</Link>
+    <Link href="/server-client/client-server-url/client">ClientServerUrl</Link>
     <Link href="/serever-action">CServerAction</Link>
 
 
