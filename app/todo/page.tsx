@@ -122,16 +122,16 @@ export default function TodoTable() {
                         <button className="px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600 transition">Pregled</button>
                       </Link>
 
-
+{/*
                       <Link href="/todo/update" onClick={() => setUser((todo.id))} >
 
 
                         <button className="px-4 py-2 rounded bg-yellow-500 text-white hover:bg-yellow-600 transition">Izmjeni</button>
 
-                      </Link>
+                      </Link> */}
 
                       {/* Delete dugme */}
-                      <button className="px-4 py-2 rounded bg-red-500 text-white hover:bg-red-600 transition " onClick={() => openDeleteConfirmModal(todo.id)}>Briši</button>
+                      {/* <button className="px-4 py-2 rounded bg-red-500 text-white hover:bg-red-600 transition " onClick={() => openDeleteConfirmModal(todo.id)}>Briši</button> */}
 
                       {/* Add dugme */}
 
