@@ -67,7 +67,7 @@ export default function TodoTable() {
   const procenatKompletiranih = brojZapisa === 0 ? 0 : Math.round((brojKompletiranih / brojZapisa) * 100);
   return (
     <>
-      {isPending ? <LoadingDots /> : <p>Učitano</p>}
+      {/* {isPending ? <LoadingDots /> : <p>Učitano</p>} */}
       <div className='container mx-auto p-0 w-full'>
       <div className=' text-gray-500 p-0 flex justify-between items-center w-full'>
         <div className="flex items-center relative">
@@ -100,6 +100,7 @@ export default function TodoTable() {
             {filteredTodos.length === 0 ? (
               <tr>
                 <td colSpan={4} className="text-center">Nema zadataka</td>
+                {/* {isPending ? <LoadingDots /> : <p>Učitano</p>}  */}
               </tr>
             ) : (
               filteredTodos.map(todo => (

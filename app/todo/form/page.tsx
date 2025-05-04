@@ -120,8 +120,10 @@ const GetTodoByIdForm = () => {
           onClose={closeDeleteConfirmModal}
           onConfirm={() => deleteTodo(String(selectedItemId!))}
           itemId={selectedItemId!}
-          title={todos.find(todo => todo.id === String(selectedItemId!))?.title || ''}
+          title={todo?.title} // <-- OVO JE KLJUČNO
         />
+
+        
       {toast && (
         <div
           style={{
