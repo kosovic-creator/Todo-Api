@@ -80,7 +80,7 @@ export default function UpdatePage() {
             } else {
                 const errorData = await response.json();
                 setMessage(`Error: ${errorData.error || 'Greška pri izmjeni.'}`);
-                setTimeout(() => router.push('/todo'), 3500);
+                setTimeout(() => router.push('/todo'), 2000);
             }
         } catch (error) {
             setMessage('An unexpected error occurred.');

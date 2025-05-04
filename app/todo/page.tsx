@@ -26,14 +26,14 @@ export default function TodoTable() {
     });
   }, []);
 
-  const openDeleteConfirmModal = (id: string | number) => {
-    setSelectedItemId(id);
-    setIsModalOpen(true);
-  };
-  const closeDeleteConfirmModal = () => {
-    setIsModalOpen(false);
-    setSelectedItemId(null);
-  };
+  // const openDeleteConfirmModal = (id: string | number) => {
+  //   setSelectedItemId(id);
+  //   setIsModalOpen(true);
+  // };
+  // const closeDeleteConfirmModal = () => {
+  //   setIsModalOpen(false);
+  //   setSelectedItemId(null);
+  // };
 
   function showToast(message: string) {
     setToast(message);
@@ -51,12 +51,12 @@ export default function TodoTable() {
     showToast('Napomena je uspešno izmjenjena!');
   };
 
-  const deleteTodo = async (id: string) => {
-    await fetch(`/api/todo/${id}`, { method: 'DELETE' });
-    setTodos(todos.filter(t => t.id !== id));
-    setIsModalOpen(false);
-    showToast('Napomena je uspešno obrisana!');
-  };
+  // const deleteTodo = async (id: string) => {
+  //   await fetch(`/api/todo/${id}`, { method: 'DELETE' });
+  //   setTodos(todos.filter(t => t.id !== id));
+  //   setIsModalOpen(false);
+  //   showToast('Napomena je uspešno obrisana!');
+  // };
 
   const filteredTodos = todos.filter(todo =>
     todo.title.toLowerCase().includes(filter.toLowerCase())
@@ -146,14 +146,14 @@ export default function TodoTable() {
             )}
           </tbody>
         </table>
-        <ConfirmDeleteModal
+        {/* <ConfirmDeleteModal
           isOpen={isModalOpen}
           onClose={closeDeleteConfirmModal}
           onConfirm={() => deleteTodo(String(selectedItemId!))}
           itemId={selectedItemId!}
           title={todos.find(todo => todo.id === String(selectedItemId!))?.title || ''}
-        />
-        {toast && (
+        /> */}
+        {/* {toast && (
           <div
             style={{
               position: 'fixed',
@@ -166,10 +166,10 @@ export default function TodoTable() {
               boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
               zIndex: 9999,
             }}
-          >
-            {toast}
-          </div>
-        )}
+          > */}
+            {/* {toast}
+          </div> */}
+
       </div>
       <footer> <a>Procenat kompletiranih zadataka:  {procenatKompletiranih}%</a></footer>
 

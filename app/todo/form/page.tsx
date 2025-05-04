@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import ConfirmDeleteModal from "@/components/TodoModals/ConfirmDeleteModal";
 
 
+
 const GetTodoByIdForm = () => {
   const [todoId, setTodoId] = useState("");
   const [todo, setTodo] = useState<any | null>(null);
@@ -75,16 +76,18 @@ const GetTodoByIdForm = () => {
     setToast(message);
     setTimeout(() => setToast(null), 2500); // Toast nestaje posle 2.5s
   }
+  const router = useRouter();
   const deleteTodo = async (id: string) => {
     await fetch(`/api/todo/${id}`, { method: 'DELETE' });
     setTodos(todos.filter(t => t.id !== id));
     setIsModalOpen(false);
     showToast('Napomena je uspešno obrisana!');
+    setTimeout(() => router.push('/todo'), 2000);
   };
 
   return (
-    <div className=" w-full mx-auto p-4 bg-white shadow-md rounded">
-      <div className=" w-full mx-auto p-4 bg-white shadow-md rounded">
+    <div className=" w-full mx-auto p-4 bg-white">
+      <div className=" w-full mx-auto p-4 bg-white ">
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
 
           {todo && (
