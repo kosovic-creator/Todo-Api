@@ -99,8 +99,8 @@ export default function TodoTable() {
           <tbody className='text-sm text-gray-700 bg-white divide-y divide-gray-300'>
             {filteredTodos.length === 0 ? (
               <tr>
-                <td colSpan={4} className="text-center">Nema zadataka</td>
-                {/* {isPending ? <LoadingDots /> : <p>Učitano</p>}  */}
+                <td colSpan={4} className="text-center">{isPending ? <LoadingDots /> : <p>Učitano</p>} </td>
+              
               </tr>
             ) : (
               filteredTodos.map(todo => (
