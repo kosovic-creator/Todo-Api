@@ -47,7 +47,7 @@ export default function TodoTable() {
       body: JSON.stringify(data),
     });
     const updated = await res.json();
-    setTodos(todos.map(t => (t.id === id ? updated : t)));
+    setTodos(todos.map(t => (t.id === Number(id) ? updated : t)));
     showToast('Napomena je uspešno izmjenjena!');
   };
 
@@ -100,7 +100,7 @@ export default function TodoTable() {
             {filteredTodos.length === 0 ? (
               <tr>
                 <td colSpan={4} className="text-center">{isPending ? <LoadingDots /> : <p>Učitano</p>} </td>
-              
+
               </tr>
             ) : (
               filteredTodos.map(todo => (
@@ -113,13 +113,13 @@ export default function TodoTable() {
                       className='ml-5'
                       type="checkbox"
                       checked={todo.done}
-                      onChange={() => updateTodo(todo.id, { done: !todo.done })}
+                      onChange={() => updateTodo(String(todo.id), { done: !todo.done })}
                     />
                   </td>
                   <td>
                     <div className="flex gap-2 flex-row-reverse w-full">
 
-                      <Link href="/todo/form" onClick={() => setUser((todo.id))} >
+                      <Link href="/todo/form" onClick={() => setUser(String(todo.id))} >
                         <button className="px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600 transition">Pregled</button>
                       </Link>
 

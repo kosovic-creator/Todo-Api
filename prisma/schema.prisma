@@ -18,7 +18,7 @@ datasource db {
 
 
 model Todo {
-  id       String   @id @default(uuid())
+  id       Int   @id @default(autoincrement())
   title    String
   priority Int
   done     Boolean  @default(false)

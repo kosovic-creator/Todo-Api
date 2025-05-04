@@ -3,7 +3,7 @@ import { prisma } from '@/lib/prisma';
 
 export async function PATCH(request: NextRequest) {
   const url = new URL(request.url);
-  const id = url.pathname.split('/').pop();
+  const id = parseInt(url.pathname.split('/').pop() || '', 10);
 
   if (!id) {
     return NextResponse.json({ error: 'ID nije prosleđen.' }, { status: 400 });
@@ -22,13 +22,13 @@ export async function PATCH(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
   const url = new URL(request.url);
-  const id = url.pathname.split('/').pop(); // izvlači ID iz URL-a
+  const id = parseInt(url.pathname.split('/').pop() || '', 10); // izvlači ID iz URL-a i parsira ga u broj
 
   if (!id) {
     return NextResponse.json({ message: 'ID nije prosleđen.' }, { status: 400 });
   }
 
-  await prisma.todo.delete({ where: { id } });
+  await prisma.todo.delete({ where: { id } }); // koristi parsirani broj
   return NextResponse.json({ message: 'Deleted' });
 }
 
@@ -36,7 +36,8 @@ export async function GET(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const { id } = await params;
+  const { id: idString } = await params;
+  const id = parseInt(idString, 10);
 
 
 

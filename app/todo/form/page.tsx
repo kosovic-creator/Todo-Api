@@ -79,7 +79,7 @@ const GetTodoByIdForm = () => {
   const router = useRouter();
   const deleteTodo = async (id: string) => {
     await fetch(`/api/todo/${id}`, { method: 'DELETE' });
-    setTodos(todos.filter(t => t.id !== id));
+    setTodos(todos.filter(t => t.id !== Number(id)));
     setIsModalOpen(false);
     showToast('Napomena je uspešno obrisana!');
     setTimeout(() => router.push('/todo'), 2000);
@@ -123,7 +123,7 @@ const GetTodoByIdForm = () => {
           title={todo?.title} // <-- OVO JE KLJUČNO
         />
 
-        
+
       {toast && (
         <div
           style={{
